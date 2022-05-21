@@ -1,0 +1,32 @@
+$container-max-widths: (
+        sm: 520px,
+        md: 720px,
+        lg: 840px,
+        xl: 1015px,
+        xxl: 1200px
+);
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 480px,
+        md: 768px,
+        lg: 860px,
+        xl: 1050px,
+        xxl: 1220px
+);
+
+
+$spacer: 1rem;
+$spacers: (
+        0: 0,
+        0_5: $spacer * .12,
+        1: $spacer * .25,
+        1_5: $spacer * .37,
+        2: $spacer * .5,
+        2_5: $spacer * .75,
+        3: $spacer,
+        3_5: $spacer * 1.25,
+        4: $spacer * 1.5,
+        4_5: $spacer * 2.25,
+        5: $spacer * 3,
+);
