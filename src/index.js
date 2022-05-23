@@ -5,12 +5,16 @@ import { App } from './App';
 import { HashRouter } from 'react-router-dom'
 // styles
 import './index.scss'
+import { Provider } from 'react-redux'
+import {store} from './redux/store'
 
-
+console.log('index')
 ReactDOM.render(
     <StrictMode>
       <HashRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </HashRouter>
     </StrictMode>, document.getElementById('root')
 )
