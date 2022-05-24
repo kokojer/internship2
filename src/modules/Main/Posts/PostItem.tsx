@@ -1,4 +1,3 @@
-
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { PostItemType } from '../../../redux/types'
@@ -41,19 +40,12 @@ const PostInfo = styled.div`
     flex-wrap: wrap;
   }
   `
-const InfoItem = styled.div`
-   
-  `
+
 export const PostItem = (props:PostItemType) => {
   const ref = useRef<HTMLAnchorElement>(null)
   useEffect(() => {
     const anchorNum = window.location.hash.replace(/^.+news_/,'')
-    props.index ? +anchorNum === props.index + 1 ? ref.current?.scrollIntoView({
-
-    }) : '' : ''
-
-    // console.log(document.querySelector(`#news_${props.index}`))
-
+    props.index ? +anchorNum === props.index + 1 ? ref.current?.scrollIntoView() : '' : ''
   }, [])
   return (
         <NavLinkStyled to={`/posts/${props.id}`} id={`news_${props.index}`} ref={ref}>
@@ -63,9 +55,9 @@ export const PostItem = (props:PostItemType) => {
               {props.title}
             </PostTitle>
             <PostInfo>
-              <InfoItem className='me-2'>Author: {props.user}</InfoItem>
-              <InfoItem className='me-2'>Rating: {props.points} points</InfoItem>
-              <InfoItem className='me-0'>Post date: {props.time_ago}</InfoItem>
+              <div className='me-2'>Author: {props.user}</div>
+              <div className='me-2'>Rating: {props.points} points</div>
+              <div className='me-0'>Post date: {props.time_ago}</div>
             </PostInfo>
           </div>
         </NavLinkStyled>

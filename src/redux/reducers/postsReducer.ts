@@ -11,8 +11,8 @@ export const postsReducer = (state = initialState, action: PostsActionTypes) : P
   switch (action.type) {
     case ActionTypes.INK_PAGETOLOAD:
       return {...state, pageToLoad: ++state.pageToLoad}
-    case ActionTypes.DELETE_POSTS:
-      return {loading: false, error: null, posts: [], pageToLoad: --state.pageToLoad}
+    case ActionTypes.RELOAD_POSTS:
+      return {loading: false, error: null, posts: [...action.payload], pageToLoad: state.pageToLoad}
     case ActionTypes.FETCH_POSTS:
       return {loading: true, error: null, posts: [...state.posts], pageToLoad: state.pageToLoad}
     case ActionTypes.FETCH_POSTS_SUCCESS:

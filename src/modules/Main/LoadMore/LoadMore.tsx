@@ -1,5 +1,5 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
-import { Container, Spinner } from 'react-bootstrap'
+import styled, { css } from 'styled-components';
+import { Spinner } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchPosts } from '../../../redux/getInfo/getPosts'
@@ -32,35 +32,29 @@ const LoadMoreStyled = styled.div<inActive>`
   `
 
 export const LoadMore = () => {
-    const {loading, pageToLoad, error} = useTypedSelector(state => state.posts)
-    const dispatch = useDispatch()
-    const bindFetchPosts = bindActionCreators(fetchPosts, dispatch)
-
+  const {loading, pageToLoad, error} = useTypedSelector(state => state.posts)
+  const dispatch = useDispatch()
+  const bindFetchPosts = bindActionCreators(fetchPosts, dispatch)
   if(loading){
-    return (
-          <Spinner animation="border" className='mx-auto' />
-    )
+    return (<Spinner animation="border" className='mx-auto' />)
   }
-
   if(error){
-   return ( <Container>
-        <LoadMoreStyled inActive={true}>
-          {error.toString().replace(/^Error: /,'')}
-        </LoadMoreStyled>
-    </Container>)
-  }
+   return (<LoadMoreStyled inActive={true}>
+          {error.replace(/^Error: /,'')}
+           </LoadMoreStyled>)
+   }
 
-  return (
-    <Container>
-      {Math.ceil(desiredPostsLength / 30) >= pageToLoad ? (
-        <LoadMoreStyled onClick={() => bindFetchPosts(pageToLoad)} inActive={false}>
-          Load More
-        </LoadMoreStyled>
-      ):(
-        <LoadMoreStyled inActive={true}>
-          {`Maximum of ${desiredPostsLength} news`}
-        </LoadMoreStyled>
-      )}
-    </Container>
-  );
+    return (
+      <>
+        {Math.ceil(desiredPostsLength / 30) >= pageToLoad ? (
+          <LoadMoreStyled onClick={() => bindFetchPosts(pageToLoad)} inActive={false}>
+            Load More
+          </LoadMoreStyled>
+        ):(
+          <LoadMoreStyled inActive={true}>
+            {`Maximum of ${desiredPostsLength} news`}
+          </LoadMoreStyled>
+        )}
+      </>
+    );
 }

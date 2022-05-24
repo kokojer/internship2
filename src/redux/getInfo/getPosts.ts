@@ -1,6 +1,6 @@
 import { ActionTypes, PostsActionTypes } from '../types'
 import { Dispatch } from 'redux'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 export const fetchPosts = (page:number) =>{
   return async(dispatch:Dispatch<PostsActionTypes>) => {
@@ -12,9 +12,13 @@ export const fetchPosts = (page:number) =>{
       }
       dispatch({type: ActionTypes.FETCH_POSTS_SUCCESS, payload: response.data})
       dispatch({type: ActionTypes.INK_PAGETOLOAD})
-    }catch (err:any){
-      console.log(err)
-      dispatch({type: ActionTypes.FETCH_POSTS_ERROR, payload: err})
+    }catch (err){
+      if(typeof err === 'string'){
+        dispatch({type: ActionTypes.FETCH_POSTS_ERROR, payload: err})
+      }
+      if(err instanceof AxiosError){
+        dispatch({type: ActionTypes.FETCH_POSTS_ERROR, payload: err.toString()})
+      }
     }
   }
 }

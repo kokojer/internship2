@@ -2,7 +2,7 @@ export enum ActionTypes {
   FETCH_POSTS = 'FETCH_POSTS',
   FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS',
   FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
-  DELETE_POSTS = 'DELETE_POSTS',
+  RELOAD_POSTS = 'RELOAD_POSTS',
   INK_PAGETOLOAD = 'INK_PAGETOLOAD'
 }
 
@@ -25,7 +25,7 @@ interface FetchPostsType{
 }
 interface FetchPostsSuccessType{
   type: ActionTypes.FETCH_POSTS_SUCCESS,
-  payload:any[]
+  payload:Array<PostItemType>
 }
 interface FetchPostsErrorType{
   type: ActionTypes.FETCH_POSTS_ERROR,
@@ -33,15 +33,13 @@ interface FetchPostsErrorType{
 }
 
 interface DeletePostsType{
-  type: ActionTypes.DELETE_POSTS
+  type: ActionTypes.RELOAD_POSTS,
+  payload: Array<PostItemType>
 }
 
 interface InkPageToLoadType{
   type: ActionTypes.INK_PAGETOLOAD
 }
-
-
-export type PostsActionTypes = FetchPostsErrorType | FetchPostsSuccessType | FetchPostsType | DeletePostsType | InkPageToLoadType
 
 export interface PostsType{
   posts: Array<PostItemType>,
@@ -49,3 +47,5 @@ export interface PostsType{
   error: null | string,
   pageToLoad: number
 }
+
+export type PostsActionTypes = FetchPostsErrorType | FetchPostsSuccessType | FetchPostsType | DeletePostsType | InkPageToLoadType
