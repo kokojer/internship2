@@ -1,4 +1,4 @@
-export enum ActionTypes {
+export enum ActionTypesPosts {
   FETCH_POSTS = 'FETCH_POSTS',
   FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS',
   FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
@@ -6,7 +6,7 @@ export enum ActionTypes {
   INK_PAGETOLOAD = 'INK_PAGETOLOAD'
 }
 
-export interface PostItemType {
+export interface SmallPostItemType {
   id: number;
   title: string;
   points?: number | null;
@@ -21,28 +21,28 @@ export interface PostItemType {
 }
 
 interface FetchPostsType{
-  type: ActionTypes.FETCH_POSTS,
+  type: ActionTypesPosts.FETCH_POSTS,
 }
 interface FetchPostsSuccessType{
-  type: ActionTypes.FETCH_POSTS_SUCCESS,
-  payload:Array<PostItemType>
+  type: ActionTypesPosts.FETCH_POSTS_SUCCESS,
+  payload:Array<SmallPostItemType>
 }
 interface FetchPostsErrorType{
-  type: ActionTypes.FETCH_POSTS_ERROR,
+  type: ActionTypesPosts.FETCH_POSTS_ERROR,
   payload: string
 }
 
 interface DeletePostsType{
-  type: ActionTypes.RELOAD_POSTS,
-  payload: Array<PostItemType>
+  type: ActionTypesPosts.RELOAD_POSTS,
+  payload: Array<SmallPostItemType>
 }
 
 interface InkPageToLoadType{
-  type: ActionTypes.INK_PAGETOLOAD
+  type: ActionTypesPosts.INK_PAGETOLOAD
 }
 
 export interface PostsType{
-  posts: Array<PostItemType>,
+  posts: Array<SmallPostItemType>,
   loading: boolean,
   error: null | string,
   pageToLoad: number

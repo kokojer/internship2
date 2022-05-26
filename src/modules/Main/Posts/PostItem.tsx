@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { PostItemType } from '../../../redux/types'
+import { SmallPostItemType } from '../../../redux/typesPosts'
 import React, { useEffect, useRef } from 'react'
 const NavLinkStyled = styled(NavLink)`
     background-color: #bdb5b5;
@@ -41,7 +41,7 @@ const PostInfo = styled.div`
   }
   `
 
-export const PostItem = (props:PostItemType) => {
+export const PostItem = (props:SmallPostItemType) => {
   const ref = useRef<HTMLAnchorElement>(null)
   useEffect(() => {
     const anchorNum = window.location.hash.replace(/^.+news_/,'')

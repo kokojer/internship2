@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Spinner } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchPosts } from '../../../redux/getInfo/getPosts'
+import { getMorePosts } from '../../../redux/getInfo/getMorePosts'
 import React from 'react'
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector'
 import { desiredPostsLength } from '../../../redux/store'
@@ -34,7 +34,7 @@ const LoadMoreStyled = styled.div<inActive>`
 export const LoadMore = () => {
   const {loading, pageToLoad, error} = useTypedSelector(state => state.posts)
   const dispatch = useDispatch()
-  const bindFetchPosts = bindActionCreators(fetchPosts, dispatch)
+  const bindFetchPosts = bindActionCreators(getMorePosts, dispatch)
   if(loading){
     return (<Spinner animation="border" className='mx-auto' />)
   }

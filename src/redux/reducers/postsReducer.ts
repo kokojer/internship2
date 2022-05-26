@@ -1,23 +1,23 @@
-import { ActionTypes, PostsActionTypes, PostsType } from '../types'
+import { ActionTypesPosts, PostsActionTypes, PostsType } from '../typesPosts'
 
 const initialState: PostsType = {
   posts:[],
   loading: false,
   error: null,
-  pageToLoad: 1
+  pageToLoad: 2
 }
 
 export const postsReducer = (state = initialState, action: PostsActionTypes) : PostsType => {
   switch (action.type) {
-    case ActionTypes.INK_PAGETOLOAD:
+    case ActionTypesPosts.INK_PAGETOLOAD:
       return {...state, pageToLoad: ++state.pageToLoad}
-    case ActionTypes.RELOAD_POSTS:
+    case ActionTypesPosts.RELOAD_POSTS:
       return {loading: false, error: null, posts: [...action.payload], pageToLoad: state.pageToLoad}
-    case ActionTypes.FETCH_POSTS:
+    case ActionTypesPosts.FETCH_POSTS:
       return {loading: true, error: null, posts: [...state.posts], pageToLoad: state.pageToLoad}
-    case ActionTypes.FETCH_POSTS_SUCCESS:
+    case ActionTypesPosts.FETCH_POSTS_SUCCESS:
       return {loading: false, error: null, posts: [...state.posts, ...action.payload], pageToLoad: state.pageToLoad}
-    case ActionTypes.FETCH_POSTS_ERROR:
+    case ActionTypesPosts.FETCH_POSTS_ERROR:
       return {loading: false, error: action.payload, posts: [...state.posts], pageToLoad: state.pageToLoad}
     default:
       return state
