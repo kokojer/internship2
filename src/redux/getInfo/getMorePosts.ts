@@ -6,7 +6,7 @@ export const getMorePosts = (page:number) =>{
   return async(dispatch:Dispatch<PostsActionTypes>) => {
     try {
       dispatch({type: ActionTypesPosts.FETCH_POSTS})
-      const response = await axios.get(`https://api.hnpwa.com/v0/newest/${page}.json`)
+      const response = await axios.get(`https://api.hnpwa.com/v0/newest/${page}.json?no-cache=${new Date()}`)
       if(response.data.length === 0){
         throw new Error('THERE IS NO MORE NEWS')
       }

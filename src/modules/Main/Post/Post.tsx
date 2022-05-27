@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import { Comments } from './Comments'
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { useEffect } from 'react'
 import { getPostInfo } from '../../../redux/getInfo/getPostInfo'
 import { useParams } from 'react-router-dom'
-import Parser from 'html-react-parser';
+import parse from 'html-react-parser';
 
 const ArticleStyled = styled.article`
   margin-top: 1rem;
@@ -40,9 +40,9 @@ export const Post = () => {
   const bindGetPostInfo = bindActionCreators(getPostInfo, dispatch)
 
   useEffect(() => {
-    id ? bindGetPostInfo(+id) : ''
+    id ? bindGetPostInfo(+id, false) : ''
   }, [])
-  const htmlContent = post?.content ? new DOMParser().parseFromString(post?.content, "text/html").body.innerHTML : ''
+  const htmlContent = post?.content ? new DOMParser().parseFromString(post?.content, 'text/html').body.innerHTML : ''
   return (
         <ArticleStyled>
           {error ? (
@@ -59,12 +59,12 @@ export const Post = () => {
                 <InfoPostItem>
                   {loading ? <Spinner animation="grow" variant="dark" /> : `Date: ${post?.time_ago}`}
                 </InfoPostItem>
-                <a className="btn btn-success" href={post?.url} target='_blank' role="button">Read More</a>
+                <a className="btn btn-success" rel="noreferrer" href={post?.url} target='_blank' role="button">Read More</a>
               </InfoPost>
               <div>
-                {loading ? <Spinner animation="grow" variant="dark" /> :  Parser(htmlContent)}
+                {loading ? <Spinner animation="grow" variant="dark" /> :  parse(htmlContent)}
               </div>
-              <Comments />
+              <Comments comments={post.comments} commentsCounter={post?.comments_count}/>
             </>
           )}
         </ArticleStyled>

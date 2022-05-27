@@ -18,7 +18,7 @@ export interface BigPostItemType {
   type: string;
   url?: string;
   domain?: string;
-  comments: BigPostItemType;
+  comments: Array<BigPostItemType> | [];
   level: number;
   comments_count: number;
 }
@@ -41,7 +41,7 @@ interface DeletePostType{
 
 
 export interface PostType{
-  post: BigPostItemType | null,
+  post: BigPostItemType,
   loading: boolean,
   error: null | string
 }

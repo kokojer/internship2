@@ -44,11 +44,14 @@ const PostInfo = styled.div`
 export const PostItem = (props:SmallPostItemType) => {
   const ref = useRef<HTMLAnchorElement>(null)
   useEffect(() => {
-    const anchorNum = window.location.hash.replace(/^.+news_/,'')
-    props.index ? +anchorNum === props.index + 1 ? ref.current?.scrollIntoView() : '' : ''
+    const anchorNum = window.location.hash.replace(/^.+id_/,'')
+
+    props.id ? +anchorNum === +props.id ? ref.current?.scrollIntoView({
+      block:'center'
+    }) : '' : ''
   }, [])
   return (
-        <NavLinkStyled to={`/posts/${props.id}`} id={`news_${props.index}`} ref={ref}>
+        <NavLinkStyled to={`/posts/${props.id}`} id={`id_${props.id}`} ref={ref}>
           <NumberNews>{props.index}</NumberNews>
           <div className=''>
             <PostTitle>

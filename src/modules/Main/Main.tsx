@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap'
 import { Posts } from './Posts/Posts'
-import { LoadMore } from './Loadmore/LoadMore'
+import { LoadMore } from './LoadMore/LoadMore'
 import { Routes, Route} from 'react-router-dom'
 import {Post} from './Post/Post'
 
