@@ -9,61 +9,60 @@ const NavLinkStyled = styled(NavLink)`
     padding: 8px;
     text-decoration: none;
     color: black;
-    box-shadow:0px 0px 5px 0px black;
-    transition: .3s;
+    box-shadow: 0px 0px 5px 0px black;
+    transition: 0.3s;
     :hover {
-      color: black;
-      transform: translateX(10px);
-      @media(max-width: 767px){
-        transform: none;
-      }
-      
+        color: black;
+        transform: translateX(10px);
+        @media (max-width: 767px) {
+            transform: none;
+        }
     }
-  `
+`
 const NumberNews = styled.div`
     font-size: 1rem;
     margin-right: 0.75rem;
     font-weight: 500;
-  `
+`
 const PostTitle = styled.h2`
     font-size: 14px;
     margin-bottom: 5px;
-  @media(max-width: 520px){
-    font-size: 12px;
-  }
-  `
+    @media (max-width: 520px) {
+        font-size: 12px;
+    }
+`
 const PostInfo = styled.div`
     font-size: 11px;
     display: flex;
-  @media(max-width: 520px){
-    font-size: 10px;
-    flex-wrap: wrap;
-  }
-  `
+    @media (max-width: 520px) {
+        font-size: 10px;
+        flex-wrap: wrap;
+    }
+`
 
-export const PostItem = (props:SmallPostItemType) => {
-  const ref = useRef<HTMLAnchorElement>(null)
-  useEffect(() => {
-    const anchorNum = window.location.hash.replace(/^.+id_/,'')
-
-    props.id ? +anchorNum === +props.id ? ref.current?.scrollIntoView({
-      block:'center'
-    }) : '' : ''
-  }, [])
-  return (
+export const PostItem = (props: SmallPostItemType) => {
+    const ref = useRef<HTMLAnchorElement>(null)
+    useEffect(() => {
+        const anchorNum = window.location.hash.replace(/^.+id_/, '')
+        props.id
+            ? +anchorNum === +props.id
+                ? ref.current?.scrollIntoView({
+                      block: 'center',
+                  })
+                : ''
+            : ''
+    }, [])
+    return (
         <NavLinkStyled to={`/posts/${props.id}`} id={`id_${props.id}`} ref={ref}>
-          <NumberNews>{props.index}</NumberNews>
-          <div className=''>
-            <PostTitle>
-              {props.title}
-            </PostTitle>
-            <PostInfo>
-              <div className='me-2'>Author: {props.user}</div>
-              <div className='me-2'>Rating: {props.points} points</div>
-              <div className='me-0'>Post date: {props.time_ago}</div>
-            </PostInfo>
-          </div>
+            <NumberNews>{props.index}</NumberNews>
+            <div className=''>
+                <PostTitle>{props.title}</PostTitle>
+                <PostInfo>
+                    <div className='me-2'>Author: {props.user}</div>
+                    <div className='me-2'>Rating: {props.points} points</div>
+                    <div className='me-0'>Post date: {props.time_ago}</div>
+                </PostInfo>
+            </div>
         </NavLinkStyled>
-  );
+    )
 }
-
