@@ -6,11 +6,30 @@ import { NotNestedComment } from './NotNestedComment'
 import { NestedComment } from './NestedComment'
 const CommentsContainer = styled.div`
     margin-top: 2rem;
+    @media (max-width: 1050px) {
+        margin-top: 1rem;
+    }
 `
 const CommentsCounter = styled.div`
     font-size: 30px;
     font-weight: 500;
     margin-right: 0.5rem;
+    @media (max-width: 1050px) {
+        font-size: 1.5rem;
+        margin-right: 0.25rem;
+    }
+`
+
+const CommentsTitle = styled.h2`
+    @media (max-width: 1050px) {
+        font-size: 1.5rem;
+    }
+`
+
+const CommentsHeader = styled.div`
+    @media (max-width: 400px) {
+        justify-content: center;
+    }
 `
 
 export const Comments = ({
@@ -22,13 +41,15 @@ export const Comments = ({
 }) => {
     return (
         <CommentsContainer>
-            <div className='d-flex mb-3'>
-                <h2 className='me-3 mb-0 d-flex align-items-center'>Comments</h2>
+            <CommentsHeader className='d-flex mb-3'>
+                <CommentsTitle className='me-2_5 me-xl-3 mb-0 d-flex align-items-center'>
+                    Comments
+                </CommentsTitle>
                 <div className='d-flex align-items-center'>
                     <CommentsCounter>{commentsCounter}</CommentsCounter>
                     <img src={icon} width='40' height='40' />
                 </div>
-            </div>
+            </CommentsHeader>
             <div>
                 {commentsCounter ? (
                     <Accordion alwaysOpen>
@@ -45,7 +66,7 @@ export const Comments = ({
                         })}
                     </Accordion>
                 ) : (
-                    <div className='ms-2'>No comments</div>
+                    <div className='ms-sm-2 ms-0 text-center text-sm-start'>No comments</div>
                 )}
             </div>
         </CommentsContainer>

@@ -15,8 +15,9 @@ export const getMorePosts = (page: number) => {
             dispatch({ type: ActionTypesPosts.FETCH_POSTS_SUCCESS, payload: response.data })
             dispatch({ type: ActionTypesPosts.INK_PAGETOLOAD })
         } catch (err) {
-            if (typeof err === 'string') {
-                dispatch({ type: ActionTypesPosts.FETCH_POSTS_ERROR, payload: err })
+            const result = (err as Error).message
+            if (result) {
+                dispatch({ type: ActionTypesPosts.FETCH_POSTS_ERROR, payload: result })
             }
             if (err instanceof AxiosError) {
                 dispatch({ type: ActionTypesPosts.FETCH_POSTS_ERROR, payload: err.toString() })

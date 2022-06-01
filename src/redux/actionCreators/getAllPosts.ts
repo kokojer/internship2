@@ -15,8 +15,9 @@ export const getAllPosts = (lastPage: number) => {
             }
             dispatch({ type: ActionTypesPosts.RELOAD_POSTS, payload: arrPosts })
         } catch (err) {
-            if (typeof err === 'string') {
-                dispatch({ type: ActionTypesPosts.FETCH_POSTS_ERROR, payload: err })
+            const result = (err as Error).message
+            if (result) {
+                dispatch({ type: ActionTypesPosts.FETCH_POSTS_ERROR, payload: result })
             }
             if (err instanceof AxiosError) {
                 dispatch({ type: ActionTypesPosts.FETCH_POSTS_ERROR, payload: err.toString() })

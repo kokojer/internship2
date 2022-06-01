@@ -7,21 +7,47 @@ const CommentsInfo = styled.div`
     font-size: 13px;
     font-style: italic;
 `
+
+const CommentContent = styled.div`
+    @media (max-width: 1050px) {
+        word-break: break-word;
+        font-size: 0.75rem;
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
+`
+
+const InfoCommentItem = styled.div`
+    @media (max-width: 1050px) {
+        font-size: 0.75rem;
+    }
+    @media (max-width: 400px) {
+        text-wrap: none;
+    }
+`
 export const DefaultCommentContent = (props: { comment: BigPostItemType }) => {
     return (
         <>
             {props.comment.deleted ? (
-                <div className='me-3 text-danger fw-bold'>The comment has been deleted</div>
+                <CommentContent className='me-3 text-danger fw-bold'>
+                    The comment has been deleted
+                </CommentContent>
             ) : props.comment.content ? (
-                <div className='mb-2'>{parseComment(props.comment)}</div>
+                <CommentContent className='mb-2'>{parseComment(props.comment)}</CommentContent>
             ) : (
-                <div className='me-3 text-primary fw-bold'>The comment is empty</div>
+                <CommentContent className='me-3 text-primary fw-bold'>
+                    The comment is empty
+                </CommentContent>
             )}
             <CommentsInfo>
                 {props.comment.user ? (
-                    <div className='me-3'> Author: {props.comment.user}</div>
+                    <InfoCommentItem className='me-2 me-sm-3'>
+                        {' '}
+                        Author: {props.comment.user}
+                    </InfoCommentItem>
                 ) : undefined}
-                <div> Date: {props.comment.time_ago}</div>
+                <InfoCommentItem> Date: {props.comment.time_ago}</InfoCommentItem>
             </CommentsInfo>
         </>
     )

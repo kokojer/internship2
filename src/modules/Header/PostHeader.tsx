@@ -55,7 +55,7 @@ export const Postheader = () => {
                                     : ''
                             }, 5000)
                             if (id) {
-                                return getPostInfo(+id, true)
+                                return getPostInfo(+id, false)
                             }
                         }}
                     >

@@ -35,18 +35,10 @@ interface FetchPostErrorType {
     payload: string
 }
 
-interface DeletePostType {
-    type: ActionTypesPost.DELETE_POST
-}
-
 export interface PostType {
     post: BigPostItemType
     loading: boolean
     error: null | string
 }
 
-export type PostActionTypes =
-    | FetchPostErrorType
-    | FetchPostSuccessType
-    | FetchPostType
-    | DeletePostType
+export type PostActionTypes = FetchPostErrorType | FetchPostSuccessType | FetchPostType

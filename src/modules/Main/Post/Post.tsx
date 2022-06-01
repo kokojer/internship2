@@ -18,21 +18,70 @@ const ArticleStyled = styled.article`
     padding: 1rem;
     min-height: 259px;
     margin-bottom: 1rem;
+    @media (max-width: 766px) {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    @media (max-width: 400px) {
+        margin-bottom: 0;
+        margin-top: 0.5rem;
+    }
 `
 
 const TitlePost = styled.h1`
     font-size: 40px;
     margin-bottom: 0.5rem;
+    @media (max-width: 1050px) {
+        font-size: 30px;
+    }
+    @media (max-width: 400px) {
+        text-align: center;
+        font-size: 24px;
+    }
 `
 
 const InfoPost = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    @media (max-width: 400px) {
+        flex-direction: column;
+    }
 `
 
 const InfoPostItem = styled.div`
     margin-right: 1rem;
+    @media (max-width: 766px) {
+        font-size: 0.75rem;
+    }
+    @media (max-width: 400px) {
+        margin-right: 0;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+`
+
+const ReadMoreButton = styled.a`
+    @media (max-width: 1050px) {
+        font-size: 0.75rem;
+    }
+    @media (max-width: 400px) {
+        font-size: 1rem;
+        width: 100%;
+    }
+`
+
+const PostContent = styled.div`
+    word-break: break-word;
+    @media (max-width: 1050px) {
+        font-size: 0.75rem;
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
+    @media (max-width: 400px) {
+        text-align: center;
+    }
 `
 
 export const Post = () => {
@@ -49,7 +98,7 @@ export const Post = () => {
     return (
         <ArticleStyled>
             {error ? (
-                <div className='text-center fw-bold'>{error}</div>
+                <div className='text-center fw-bold my-auto'>{error}</div>
             ) : loading ? (
                 <Spinner animation='grow' variant='dark' className='text-center m-auto' />
             ) : (
@@ -58,7 +107,7 @@ export const Post = () => {
                     <InfoPost>
                         <InfoPostItem>{`Author: ${post?.user}`}</InfoPostItem>
                         <InfoPostItem>{`Date: ${post?.time_ago}`}</InfoPostItem>
-                        <a
+                        <ReadMoreButton
                             className='btn btn-success'
                             rel='noreferrer'
                             href={post?.url}
@@ -66,9 +115,9 @@ export const Post = () => {
                             role='button'
                         >
                             Read More
-                        </a>
+                        </ReadMoreButton>
                     </InfoPost>
-                    <div>{parse(htmlContent)}</div>
+                    <PostContent>{parse(htmlContent)}</PostContent>
                     <Comments comments={post.comments} commentsCounter={post?.comments_count} />
                 </>
             )}

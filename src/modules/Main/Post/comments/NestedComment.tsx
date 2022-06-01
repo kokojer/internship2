@@ -7,9 +7,16 @@ const NestedCommentContainer = styled.div`
     padding: 1rem;
     outline: 3px solid lightgray;
     box-shadow: 3px 3px 3px black;
+    overflow-x: auto;
+    overflow-y: hidden;
     :not(:last-child) {
         margin-bottom: 1rem;
     }
+`
+
+const CommentContainer = styled.div`
+    overflow-x: auto;
+    overflow-y: hidden;
 `
 
 export const NestedComment = (props: { comment: BigPostItemType }) => {
@@ -30,11 +37,11 @@ export const NestedComment = (props: { comment: BigPostItemType }) => {
             key={props.comment.id}
         >
             <Accordion.Header>
-                <div className='me-3'>
+                <CommentContainer className='me-3'>
                     <DefaultCommentContent comment={props.comment} />
-                </div>
+                </CommentContainer>
             </Accordion.Header>
-            <Accordion.Body>
+            <Accordion.Body className='px-2 px-md-3'>
                 {arrNestedComments.map((item) => {
                     return (
                         <NestedCommentContainer key={item.id}>

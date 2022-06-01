@@ -8,7 +8,6 @@ import './index.scss'
 import { Provider } from 'react-redux'
 import {store} from './redux/store'
 
-console.log('index')
 ReactDOM.render(
     <StrictMode>
       <HashRouter>
