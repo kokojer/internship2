@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
@@ -32,7 +33,10 @@
         "spaced-comment": "error",
         "quotes": ["error", "single"],
         "no-duplicate-imports": "error",
-        "no-console": 1
+        "@typescript-eslint/no-var-requires": 0,
+        "prettier/prettier": ["error", {
+            "endOfLine":"auto"
+        }]
     },
     "settings": {
         "react": {
