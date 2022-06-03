@@ -43,7 +43,6 @@ export const DefaultCommentContent = (props: { comment: BigPostItemType }) => {
             <CommentsInfo>
                 {props.comment.user ? (
                     <InfoCommentItem className='me-2 me-sm-3'>
-                        {' '}
                         Author: {props.comment.user}
                     </InfoCommentItem>
                 ) : undefined}

@@ -92,9 +92,6 @@ export const Post = () => {
     useEffect(() => {
         id ? bindGetPostInfo(+id, false) : ''
     }, [])
-    const htmlContent = post?.content
-        ? new DOMParser().parseFromString(post?.content, 'text/html').body.innerHTML
-        : ''
     return (
         <ArticleStyled>
             {error ? (
@@ -117,7 +114,7 @@ export const Post = () => {
                             Read More
                         </ReadMoreButton>
                     </InfoPost>
-                    <PostContent>{parse(htmlContent)}</PostContent>
+                    <PostContent>{parse(post.content ?? '')}</PostContent>
                     <Comments comments={post.comments} commentsCounter={post?.comments_count} />
                 </>
             )}
